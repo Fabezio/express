@@ -1,0 +1,98 @@
+{
+    "info": {
+      "title": "API REST documentation",
+      "version": "1.0.0",
+      "license": {
+        "name": "ISC"
+      },
+      "description": "[Specification JSON](/api-spec)"
+    },
+    "basePath": "/api/v1",
+    "host": "localhost:8080",
+    "tags": [{
+        "name": "members",
+        "description": "Méthode permettant la gestion des membres"
+    }],
+    "paths": {
+      "/members/{id}": {
+        "get": {
+            "tags": ["members"],
+          "summary": "/members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {}
+        },
+        "put": {
+            "tags": ["members"],
+          "summary": "/members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {}
+        },
+        "delete": {
+            "tags": ["members"],
+          "summary": "/members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {}
+        }
+      },
+      "/members": {
+        "get": {
+            "tags": ["members"],
+          "summary": "/members",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "max",
+              "in": "query",
+              "required": false
+            }],
+          
+          "responses": {}
+        },
+        "post": {
+            "tags": ["members"],
+          "summary": "/members",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "body",
+              "required": true
+            }
+          ],
+          "responses": {}
+        }
+      }
+    },
+    "swagger": "2.0"
+  }
