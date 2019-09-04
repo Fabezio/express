@@ -8,33 +8,24 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Récupération générale!</title>
+    <title>Modification</title>
   </head>
   <body>
-    <h1 class="m-5 text-center">Récupération générale</h1>
+    <h1 class="m-5 text-center">Modification</h1>
 
-    {# <h2 class="m-5 text-center">Tableau d'exemple</h2> #}
+    <form class="container" action="" method="post">
+        {% for index, value in member %}
+            <div class="form-group">
+                <label for="{{index}}">{{index}}</label>
+                <input type="text" class="form-control" id="{{index}}" name="{{index}}" value="{{value}}" {% if index == 'id' %} readonly {% endif %}>
+            </div>
+            
 
-    <table class="container table table-striped">
-        <thead>
-            <tr class="py-4">
-                {% for index, value in members[0] %}
-                <th scope="row">{{index}}</th>
-
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-                <tr class="py-3">
-                    {% for value in member %}
-                        <td >{{value}}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-                
-        </tbody>
-    </table>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-success">Modifier</button>
+        <a href="../members/" class="btn btn-warning">Annuler</a>
+    </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
