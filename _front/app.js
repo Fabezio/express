@@ -29,20 +29,25 @@ app.get('/', (req, res) => {
     })
     // res.sendFile(__dirname+'/views/index.html')
 })
+
+// Page récupérant tous les membres
 app.get('/members', (req, res) => {
-    fetch.get('/members')
-        .then(response => {
-            if(response.data.status == 'success') {
-                res.render('members.twig', {
-                    members: response.data.result
-                })
-            } else {
-                renderError(res, response.data.message)
-            }
+    apiCall(req.query.max ? '/members?max='+req.query.max : '/members', res, (result)=> {
+        res.render('members.twig', {
+            members: result
         })
-        .catch(err => {
-            renderError(res, err.message)
+    })
+    
+})
+
+// Page récupérant un membre
+app.get('/members/:id', (req, res) => {
+    apiCall('/members/'+req.params.id, res, (result)=> {
+        res.render('member.twig', {
+            member: result
         })
+    })
+    
 })
 
 // Lancement application
@@ -56,4 +61,19 @@ function renderError(res, errMsg) {
     res.render('error.twig', {
         errorMsg: errMsg
     })
+}
+
+function apiCall(url, res, next) {
+    fetch.get(url)
+        .then(response => {
+            if(response.data.status == 'success') {
+                next(response.data.result)
+                
+            } else {
+                renderError(res, response.data.message)
+            }
+        })
+        .catch(err => {
+            renderError(res, err.message)
+        })
 }
